@@ -1,4 +1,4 @@
-# dataset2
+# public_data2
 
 - ChEMBL v.25
 - PubChem
