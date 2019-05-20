@@ -1,15 +1,15 @@
-import requests
-from bs4 import BeautifulSoup
-from dateutil.parser import parse as dtparse
-import time
+#!/usr/bin/env python
 
-url = 'http://files.docking.org/2D/AA'
-page = requests.get(url).text
-soup = BeautifulSoup(page, 'html.parser')
-for node in soup.find_all('a'):
-    href = node.get('href')
-    if href.endswith('.smi') or href.endswith('.txt'):
-        res = requests.head(url + '/' + href)
-        mtime = time.mktime(dtparse(res.headers['Last-Modified']).timetuple())
-        size = res.headers['Content-Length']
-        print(href, size, mtime)
+from lmnet.http import gHTTP
+from itertools import product
+
+chars = 'ABCDEFGHIJK'
+
+for sig in product(chars, chars):
+    sig = sig[0] + sig[1]
+
+    http = gHTTP(f'http://files.docking.org/2D/{sig}', pattern='^.*\.(smi|txt)$')
+    http.set_local(f'ZINC15/2D/{sig}')
+    for fname in http.dl():
+        http.retr(fname)
+    http.reset()

@@ -1,3 +1,5 @@
 /ChEMBL/
-/pubchem/
+/PubChem/
+/PDB/
+/ZINC15/
 __pycache__/
