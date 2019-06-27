@@ -1,6 +1,8 @@
 #!/bin/sh
 
-mkdir -p PDB
+BASEDIR='/share/public_data/PDB'
+
+mkdir -p ${BASEDIR}
 rsync -rlptvzihP --delete --port=33444 \
-      rsync.wwpdb.org::ftp/data/structures/divided/pdb/ PDB/ 2>/dev/null | \
-    tee PDB/logs
+      rsync.wwpdb.org::ftp/data/structures/divided/pdb/ ${BASEDIR}/ 2>/dev/null | \
+    tee ${BASEDIR}/logs

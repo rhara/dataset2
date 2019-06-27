@@ -5,7 +5,7 @@ from lmnet.ftp import gFTP
 ftp = gFTP('ftp.ncbi.nlm.nih.gov')
 ftp.chdir('/pubchem/Compound/CURRENT-Full/SDF')
 
-ftp.set_local('PubChem/Compund/CURRENT-Full/SDF')
+ftp.set_local('/share/public_data/PubChem/Compund/CURRENT-Full/SDF')
 
 for fname in ftp.dl():
     ftp.retr(fname)
